@@ -25,3 +25,20 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+## Setup Firebase 
+
+Run : yarn add firebase-tools // to install firebase tools 
+
+Run : firebase login:ci --no-localhost // to loging get authorization code 
+
+Run :  ng add @angular/fire // install angular fire module, select modules, project and app
+
+Run : ng serve (for local) or ng deploy or firebase deploy (for hosting)
+
+
+
+
+
+

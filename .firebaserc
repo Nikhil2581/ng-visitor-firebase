@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "arshopify-982f9": {
+      "hosting": {
+        "ng-arshopify": [
+          "arshopify-982f9"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "arshopify-982f9"
+  }
+}

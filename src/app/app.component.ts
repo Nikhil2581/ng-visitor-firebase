@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+import firebase from 'firebase/compat/app';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { FormBuilder } from '@angular/forms';
+
+export interface Visitor { name: string; mobile: number; premise:string }
+
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +15,41 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ng-arshopify';
+
+       items: Observable<any[]>;
+       private visitorCollection: AngularFirestoreCollection<Visitor>;
+      
+       visitorForm = this.formBuilder.group({
+        name: '',
+        mobile: '',
+        premise:''
+       });
+
+      
+       constructor(private firestore: AngularFirestore,  private formBuilder: FormBuilder) {
+        this.visitorCollection = firestore.collection<Visitor>('Visitor');
+      
+        this.items = firestore.collection('Visitor').valueChanges();
+
+        }
+
+          onSubmit(): void {
+         // Process checkout data here
+          //this.items = this.cartService.clearCart();
+          this.visitorCollection.add(this.visitorForm.value);
+          console.warn('Your order has been submitted', this.visitorForm.value);
+           this.visitorForm.reset();
+        }
+
+        addVisitor() {
+          // TODO add rule
+          this.visitorCollection.add({
+            name: 'test1',
+            mobile: 1233333,
+            premise:'G455',
+            //time: firebase.firestore.FieldValue.serverTimestamp(),
+          });
+          //this.visitorCollection.add(visitor);
+        }
+    
 }

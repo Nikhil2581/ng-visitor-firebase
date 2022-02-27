@@ -1,0 +1,13 @@
+
+// BOOTSTRAP 4 VARIABLES
+/*
+@import "components/bootstrap4/functions";
+@import "components/bootstrap4/variables";
+@import "components/bootstrap4/mixins";
+*/
+
+@import '~bootstrap/scss/functions', '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+@import '~bootstrap/scss/bootstrap.scss';
+
+@import 'account.scss'

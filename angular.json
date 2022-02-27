@@ -103,6 +103,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "ng-arshopify:build:production",
+            "firebaseProject": "arshopify-982f9",
+            "firebaseHostingSite": "arshopify-982f9"
+          }
         }
       }
     }
