@@ -12,10 +12,14 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { SearchTableComponent } from './search-table/search-table.component';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SearchTableComponent
   ],
   imports: [
     BrowserModule,
