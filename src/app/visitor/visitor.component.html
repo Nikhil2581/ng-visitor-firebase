@@ -1,6 +1,12 @@
 <div class="login-container">
-    <div class="form-container">
-         <h2>Register Visitor </h2>  
+    <div class="row">   
+        
+    <div class="col-md-4 mx-auto">
+        <div class="card">
+            <div class="card-header align-center">
+                <h3>Visitor Register</h3>
+            </div>
+            <div class="card-body">   
      <form [formGroup]="visitorForm" (ngSubmit)="onSubmit()">
        <div class="mb-3">
          <label class="form-label" for="inputMobileNo">Mobile Number</label>
@@ -17,8 +23,11 @@
        </div>
         <button type="submit" class="btn btn-primary">Register</button>
      </form>
+    </div>
    </div>
-      
-   Today's Visitor:  
-        
-       <app-search-table></app-search-table>
+   </div>
+        <app-search-table></app-search-table>
+    </div>
+</div>
+
+  
