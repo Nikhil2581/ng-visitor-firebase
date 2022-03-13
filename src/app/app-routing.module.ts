@@ -8,7 +8,7 @@ import { VisitorComponent } from './visitor/visitor.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent }, 
-  { path: 'visitor', component: VisitorComponent }, 
+  { path: 'visitor', component: VisitorComponent, canActivate:[IsAuthenticatedGuard] }, 
  { path: 'register', component: RegisterComponent, canActivate:[IsAuthenticatedGuard] },
  { path: '', component: BaseLayoutComponent, canActivate:[IsAuthenticatedGuard]}];
 

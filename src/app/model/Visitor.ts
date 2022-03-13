@@ -1,1 +1,5 @@
-export interface Visitor { name: string; mobile: number; premise:string }
+export interface Visitor { 
+    name: string; 
+    mobile: number; 
+    premise:string 
+}
