@@ -33,7 +33,7 @@ export class AppComponent {
 
         }
 
-          onSubmit(): void {
+        onSubmit(): void {
           this.visitorCollection.add(this.visitorForm.value);
           console.warn('Your order has been submitted', this.visitorForm.value);
           this.visitorForm.reset();
@@ -48,15 +48,6 @@ export class AppComponent {
             //time: firebase.firestore.FieldValue.serverTimestamp(),
           });
           //this.visitorCollection.add(visitor);
-        }
-
-        exportExcel() {
-          import("xlsx").then(xlsx => {
-           //   const worksheet = xlsx.utils.json_to_sheet(); // Sale Data
-          //    const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
-            //  const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
-             // this.saveAsExcelFile(excelBuffer, "sales");
-          });
         }
       /*  saveAsExcelFile(buffer: any, fileName: string): void {
           import("file-saver").then(FileSaver => { 

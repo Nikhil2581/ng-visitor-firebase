@@ -20,41 +20,8 @@
 </div>
    
 Today's Visitor:  
-<div class="p-d-flex">
-           
-             <button type="button" (click)="exportExcel()" class="button-success mr-2 text-end">Export</button>
-           
-        </div>
-        <div class="mb-2 d-flex justify-content-between align-items-center">
-            <div class="position-relative"> <span class="position-absolute search"><i class="fa fa-search"></i></span> 
-                <input class="form-control w-100" placeholder="Search by Visitor#, name..."> </div>
-            <div class="px-2"> <span>Filters <i class="fa fa-angle-down"></i></span> <i class="fa fa-ellipsis-h ms-3"></i> </div>
-        </div>       
-<div class="table-responsive">
-    <table class="table table-responsive table-borderless">
-        <thead>
-            <tr class="bg-light text-center">
-                <th scope="col" width="5%">No#</th>
-                <th scope="col" width="20%">Visitor Name</th>
-                <th scope="col" width="10%">Mobile Number</th>
-                <th scope="col" width="20%">Flat No</th>     
-                <th scope="col" width="20%">In Time</th>       
-                <th scope="col" width="20%">Out</th>     
-            </tr>
-        </thead>
-        <tbody *ngFor="let item of items | async;let indexOfelement=index"> <!--how to do indexing ;) or may use index as indexOfelement; --> 
-            <tr class="text-center">               
-                <td>{{indexOfelement+1}}</td>
-                <td>{{item.name}}</td>
-                <td><i class="fa fa-check-circle-o green"></i><span class="ms-1">{{item.mobile}}</span></td>
-                <td ><span class="fw-bolder">{{item.premise}}</span> <i class="fa fa-ellipsis-h ms-2"></i></td>
-                <td ><span class="fw-bolder">{{item.premise}}</span> <i class="fa fa-ellipsis-h ms-2"></i></td>
-                <td ><span class="fw-bolder"><button type="button" class="btn btn-primary">Out</button></span> <i class="fa fa-ellipsis-h ms-2"></i></td>
-            </tr>
-        </tbody>
-    </table>
-  </div>
-</div>
+     
+    <app-search-table></app-search-table>
 
 
 
