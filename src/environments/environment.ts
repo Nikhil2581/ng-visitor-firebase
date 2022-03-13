@@ -13,7 +13,8 @@ export const environment = {
     authDomain: 'arshopify-982f9.firebaseapp.com',
     messagingSenderId: '58120301796',
     measurementId: 'G-VQP0048F6W',
-  }
+  },
+  apiUrl: 'http://localhost:3000/',
 };
 
 /*

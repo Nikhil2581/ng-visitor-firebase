@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VnavComponent } from './vnav.component';
+import { VisitorComponent } from './visitor.component';
 
-describe('VnavComponent', () => {
-  let component: VnavComponent;
-  let fixture: ComponentFixture<VnavComponent>;
+describe('VisitorComponent', () => {
+  let component: VisitorComponent;
+  let fixture: ComponentFixture<VisitorComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ VnavComponent ]
+      declarations: [ VisitorComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VnavComponent);
+    fixture = TestBed.createComponent(VisitorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

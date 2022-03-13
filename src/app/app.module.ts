@@ -13,13 +13,26 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { SearchTableComponent } from './search-table/search-table.component';
-
+import { BaseLayoutComponent } from './layput/base-layout/base-layout.component';
+import { FooterComponent } from './layput/footer/footer.component';
+import { HeaderComponent } from './layput/header/header.component';
+import { HnavComponent } from './layput/hnav/hnav.component';
+import { AccountModule } from './account/account.module';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './layput/home/home.component';
+import { VisitorComponent } from './visitor/visitor.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchTableComponent
+    SearchTableComponent,
+    BaseLayoutComponent,
+    FooterComponent,
+    HeaderComponent,
+     HnavComponent,
+    HomeComponent,
+    VisitorComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +47,8 @@ import { SearchTableComponent } from './search-table/search-table.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
-    
+    AccountModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
