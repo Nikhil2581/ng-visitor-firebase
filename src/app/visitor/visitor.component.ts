@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Visitor } from '../model/Visitor';
 
@@ -14,13 +14,16 @@ export class VisitorComponent implements OnInit {
   items: Observable<any[]>;
   private visitorCollection: AngularFirestoreCollection<Visitor>;
  
-  visitorForm = this.formBuilder.group({
+  visitorForm!: FormGroup;
+  submitted = false;
+
+ /* visitorForm = this.formBuilder.group({
    name: '',
    mobile: '',
    premise:''
-  });
+  });*/
 
-  constructor(private firestore: AngularFirestore,  private formBuilder: FormBuilder) {
+  constructor(private fb: FormBuilder,private firestore: AngularFirestore,  private formBuilder: FormBuilder) {
         this.visitorCollection = firestore.collection<Visitor>('Visitor');
       
         this.items = firestore.collection('Visitor').valueChanges();
@@ -28,12 +31,36 @@ export class VisitorComponent implements OnInit {
         }
 
   ngOnInit(): void {
+    this.visitorForm = this.fb.group({
+      name: ['', Validators.required],
+      mobile: ['', [Validators.required]],
+      premise: ['', [Validators.required]],      
+    }
+    );
   }
 
 
   onSubmit(): void {
+    this.submitted = true;
+    if (this.visitorForm.invalid) {
+      return;
+    } else {
+    console.log("Inside OnSubmit");
     this.visitorCollection.add(this.visitorForm.value);
     console.warn('Your order has been submitted', this.visitorForm.value);
+    this.visitorForm.reset();
+    }
+  }
+
+  get visitorFormControl() {
+    return this.visitorForm.controls;
+  }
+
+  /**
+ * 
+ */
+   onReset(): void {
+    this.submitted = false;
     this.visitorForm.reset();
   }
 

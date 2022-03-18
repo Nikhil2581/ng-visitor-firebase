@@ -11,15 +11,27 @@
        <div class="mb-3">
          <label class="form-label" for="inputMobileNo">Mobile Number</label>
          <input type="mobile" class="form-control" id="mobile" formControlName="mobile" placeholder="Mobile Number">
+         <span class="text-danger"
+         *ngIf="(visitorFormControl.mobile.touched || submitted) && visitorFormControl.mobile.errors?.required">
+         Mobile Number is required
+     </span>
        </div>
        <div class="mb-3">
              <label class="form-label" for="inputName">Full Name</label>
              <input type="name" class="form-control" id="name" formControlName="name" placeholder="Name">
+             <span class="text-danger"
+             *ngIf="(visitorFormControl.name.touched || submitted) && visitorFormControl.name.errors?.required">
+             Name is required
+         </span>
        </div>
         
        <div class="mb-3">
              <label class="form-label" for="inputEmail">Flat No</label>
              <input type="premise" class="form-control" id="premise" formControlName="premise"  placeholder="Flat">
+             <span class="text-danger"
+             *ngIf="(visitorFormControl.premise.touched || submitted) && visitorFormControl.premise.errors?.required">
+             Flat Number is required
+         </span>
        </div>
         <button type="submit" class="btn btn-primary">Register</button>
      </form>
