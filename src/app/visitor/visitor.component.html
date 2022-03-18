@@ -10,11 +10,15 @@
      <form [formGroup]="visitorForm" (ngSubmit)="onSubmit()">
        <div class="mb-3">
          <label class="form-label" for="inputMobileNo">Mobile Number</label>
-         <input type="mobile" class="form-control" id="mobile" formControlName="mobile" placeholder="Mobile Number">
+         <input (keypress)="keyPressNumbers($event)" type="mobile" class="form-control" id="mobile" formControlName="mobile" placeholder="Mobile Number">
          <span class="text-danger"
          *ngIf="(visitorFormControl.mobile.touched || submitted) && visitorFormControl.mobile.errors?.required">
          Mobile Number is required
-     </span>
+        </span>
+         <span class="text-danger"
+         *ngIf="(visitorFormControl.mobile.touched || submitted) && visitorFormControl.mobile.errors?.pattern">
+         Mobile Number is not valid, Enter 10 digits
+        </span>
        </div>
        <div class="mb-3">
              <label class="form-label" for="inputName">Full Name</label>
@@ -33,7 +37,10 @@
              Flat Number is required
          </span>
        </div>
-        <button type="submit" class="btn btn-primary">Register</button>
+       <div  class="flexbuttons">
+        <button  type="submit" class="btn btn-primary">Register</button>       
+        <button  type="button" (click)="onReset()" class="btn btn-primary">Reset</button>
+       </div>     
      </form>
     </div>
    </div>

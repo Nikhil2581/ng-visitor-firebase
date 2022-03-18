@@ -33,10 +33,26 @@ export class VisitorComponent implements OnInit {
   ngOnInit(): void {
     this.visitorForm = this.fb.group({
       name: ['', Validators.required],
-      mobile: ['', [Validators.required]],
+      mobile: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       premise: ['', [Validators.required]],      
     }
     );
+  }
+
+  /**
+   * Only numbers are allowed
+   * @param event 
+   * @returns 
+   */
+  keyPressNumbers(event: any) {
+    var charCode = (event.which) ? event.which : event.keyCode;
+    // Only Numbers 0-9
+    if ((charCode < 48 || charCode > 57)) {
+      event.preventDefault();
+      return false;
+    } else {
+      return true;
+    }
   }
 
 
