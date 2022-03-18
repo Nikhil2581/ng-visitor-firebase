@@ -29,7 +29,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Setup Firebase 
 
-Run : yarn add firebase-tools // to install firebase tools 
+Run : yarn add firebase-tools // to install firebase tools  or globally yarn global add firebase-tools 
+
+If Sometimes yarn does not work to install CLI, don't why;??
+Run to install firebase CLI : npm install -g firebase-tools
 
 Run : firebase login:ci --no-localhost // to loging get authorization code 
 
@@ -37,6 +40,7 @@ Run :  ng add @angular/fire // install angular fire module, select modules, proj
 
 Run : ng serve (for local) or ng deploy or firebase deploy (for hosting)
 
+Try Demo : https://arshopify-982f9.web.app/
 
 
 

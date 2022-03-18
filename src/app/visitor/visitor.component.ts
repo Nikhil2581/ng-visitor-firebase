@@ -55,7 +55,10 @@ export class VisitorComponent implements OnInit {
     }
   }
 
-
+  /**
+   * 
+   * @returns 
+   */
   onSubmit(): void {
     this.submitted = true;
     if (this.visitorForm.invalid) {
@@ -68,13 +71,12 @@ export class VisitorComponent implements OnInit {
     }
   }
 
+  
   get visitorFormControl() {
     return this.visitorForm.controls;
   }
 
-  /**
- * 
- */
+  
    onReset(): void {
     this.submitted = false;
     this.visitorForm.reset();
