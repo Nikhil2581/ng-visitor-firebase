@@ -28,8 +28,19 @@ Today's Visitor:
               <td>{{item.name}}</td>
               <td><i class="fa fa-check-circle-o green"></i><span class="ms-1">{{item.mobile}}</span></td>
               <td ><span class="fw-bolder">{{item.premise}}</span> <i class="fa fa-ellipsis-h ms-2"></i></td>
-              <td ><span class="fw-bolder">{{item.premise}}</span> <i class="fa fa-ellipsis-h ms-2"></i></td>
-              <td ><span class="fw-bolder"><button type="button" class="btn btn-primary">Out</button></span> <i class="fa fa-ellipsis-h ms-2"></i></td>
+              <td ><span class="fw-bolder">{{toDate(item.timeIn) | date: 'dd-MMM-yyyy hh:mm:ss'}}</span> <i class="fa fa-ellipsis-h ms-2"></i></td> 
+              <td >
+                <ng-container
+                     *ngIf="item.timeOut; then showOutTime; else showOut">
+                </ng-container>             
+                    <ng-template #showOut>
+                        <span class="fw-bolder">                    
+                            <button type="button" (click)="getOut(item.timeIn)" class="btn btn-primary">Out</button></span> <i class="fa fa-ellipsis-h ms-2"></i>
+                    </ng-template>
+                    <ng-template #showOutTime>
+                        <span class="fw-bolder">{{toDate(item.timeIn) | date: 'dd-MMM-yyyy hh:mm:ss'}}</span> <i class="fa fa-ellipsis-h ms-2"></i>
+                    </ng-template>  
+                </td>
           </tr>
       </tbody>
   </table>

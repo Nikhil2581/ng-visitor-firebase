@@ -1,0 +1,16 @@
+import { Pipe, PipeTransform } from '@angular/core';
+import { formatDate } from '@angular/common';
+
+@Pipe({
+  name: 'timestamp'
+})
+export class TimestampPipe implements PipeTransform {
+
+  transform(value: any, format?: string) {
+
+    if (!value) { return ''; }
+    if (!format) { format = 'dd MMM  yy'; }
+
+    return formatDate(value._seconds * 1000, format, 'tr');
+  }
+}

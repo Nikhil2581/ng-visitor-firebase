@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Visitor } from '../model/Visitor';
@@ -13,7 +13,8 @@ export class VisitorComponent implements OnInit {
 
   items: Observable<any[]>;
   private visitorCollection: AngularFirestoreCollection<Visitor>;
- 
+  now: Date = new Date();
+
   visitorForm!: FormGroup;
   submitted = false;
 
@@ -34,10 +35,11 @@ export class VisitorComponent implements OnInit {
     this.visitorForm = this.fb.group({
       name: ['', Validators.required],
       mobile: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
-      premise: ['', [Validators.required]],      
+      premise: ['', [Validators.required]],     
+      timeIn:   this.now.getTime()
     }
     );
-  }
+  } 
 
   /**
    * Only numbers are allowed
@@ -82,6 +84,7 @@ export class VisitorComponent implements OnInit {
     this.visitorForm.reset();
   }
 
+  /*
   addVisitor() {
     // TODO add rule
     this.visitorCollection.add({
@@ -91,6 +94,6 @@ export class VisitorComponent implements OnInit {
       //time: firebase.firestore.FieldValue.serverTimestamp(),
     });
     //this.visitorCollection.add(visitor);
-  }
+  }*/
 
 }
