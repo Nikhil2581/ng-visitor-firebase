@@ -1,4 +1,4 @@
-Today's Visitor:  
+
 <div class="p-d-flex">
            
   <button type="button" (click)="exportExcel()" class="button-success mr-2 text-end">Export</button>
@@ -9,6 +9,7 @@ Today's Visitor:
      <input class="form-control w-100" placeholder="Search by Visitor#, name..."> </div>
  <div class="px-2"> <span>Filters <i class="fa fa-angle-down"></i></span> <i class="fa fa-ellipsis-h ms-3"></i> </div>
 </div>  
+<h2 class="text-center text-uppercase">Today's Visitor  </h2>
 
 <div class="table-responsive">
   <table class="table table-responsive table-borderless">
@@ -22,25 +23,29 @@ Today's Visitor:
               <th scope="col" width="20%">Out</th>     
           </tr>
       </thead>
-      <tbody *ngFor="let item of items | async;let indexOfelement=index"> <!--how to do indexing ;) or may use index as indexOfelement; --> 
+      <tbody *ngFor="let item of items;let indexOfelement=index"> <!--how to do indexing ;) or may use index as indexOfelement; --> 
           <tr class="text-center">               
               <td>{{indexOfelement+1}}</td>
               <td>{{item.name}}</td>
               <td><i class="fa fa-check-circle-o green"></i><span class="ms-1">{{item.mobile}}</span></td>
               <td ><span class="fw-bolder">{{item.premise}}</span> <i class="fa fa-ellipsis-h ms-2"></i></td>
-              <td ><span class="fw-bolder">{{toDate(item.timeIn) | date: 'dd-MMM-yyyy hh:mm:ss'}}</span> <i class="fa fa-ellipsis-h ms-2"></i></td> 
+              <td >
+                  <span class="fw-bolder">{{toDate(item.timeIn) | date: 'dd-MMM-yyyy hh:mm:ss'}}</span> 
+                  <i class="fa fa-ellipsis-h ms-2"></i>
+                  <button *ngIf="!item.timeOut" (click)="onDelete(item.id)" class="btn btn-link"> Delete </button>
+                </td>                    
               <td >
                 <ng-container
                      *ngIf="item.timeOut; then showOutTime; else showOut">
                 </ng-container>             
                     <ng-template #showOut>
                         <span class="fw-bolder">                    
-                            <button type="button" (click)="getOut(item.timeIn)" class="btn btn-primary">Out</button></span> <i class="fa fa-ellipsis-h ms-2"></i>
+                            <button type="button" (click)="getOut(item.id)" class="btn btn-primary">Out</button></span> <i class="fa fa-ellipsis-h ms-2"></i>                         
                     </ng-template>
                     <ng-template #showOutTime>
-                        <span class="fw-bolder">{{toDate(item.timeIn) | date: 'dd-MMM-yyyy hh:mm:ss'}}</span> <i class="fa fa-ellipsis-h ms-2"></i>
+                        <span class="fw-bolder">{{toDate(item.timeOut) | date: 'dd-MMM-yyyy hh:mm:ss'}}</span> <i class="fa fa-ellipsis-h ms-2"></i>
                     </ng-template>  
-                </td>
+                </td>           
           </tr>
       </tbody>
   </table>

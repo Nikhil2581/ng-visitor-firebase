@@ -1,7 +1,8 @@
 export interface Visitor { 
-    name: string; 
-    mobile: number; 
-    premise:string;
-    timeIn:string
-    timeOut:string
+    id?:string
+    name?: string; 
+    mobile?: number; 
+    premise?:string;
+    timeIn?:string
+    timeOut?:string
 }

@@ -3,6 +3,7 @@ import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/comp
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Visitor } from '../model/Visitor';
+import { VisitorService } from '../services/visitor.service';
 
 @Component({
   selector: 'app-visitor',
@@ -13,21 +14,14 @@ export class VisitorComponent implements OnInit {
 
   items: Observable<any[]>;
   private visitorCollection: AngularFirestoreCollection<Visitor>;
- 
-
   visitorForm!: FormGroup;
   submitted = false;
 
- /* visitorForm = this.formBuilder.group({
-   name: '',
-   mobile: '',
-   premise:''
-  });*/
-
-  constructor(private fb: FormBuilder,private firestore: AngularFirestore,  private formBuilder: FormBuilder) {   
-        this.visitorCollection = firestore.collection<Visitor>('Visitor',ref => ref.orderBy('timeIn'));
-        this.items = this.visitorCollection.valueChanges();       
-        }
+  constructor(private fb: FormBuilder,private visitorService: VisitorService,  private formBuilder: FormBuilder) {   
+        //this.visitorCollection = firestore.collection<Visitor>('Visitor',ref => ref.orderBy('timeIn'));
+        this.visitorCollection=visitorService.getAll();
+        this.items = this.visitorCollection.valueChanges();  
+     }
 
   ngOnInit(): void {
     this.visitorForm = this.fb.group({
@@ -64,9 +58,11 @@ export class VisitorComponent implements OnInit {
       return;
     } else {
     const newVisitor = this.visitorForm.value;
+   // newVisitor.id='v'+new Date().valueOf();
     newVisitor.timeIn=new Date().valueOf();
+    newVisitor.timeOut='';
     console.log("Inside OnSubmit");
-    this.visitorCollection.add(newVisitor);
+    this.visitorService.create(newVisitor);
     console.warn('Your visitor has been submitted', this.visitorForm.value);
     this.visitorForm.reset();
     this.submitted = false;
@@ -83,17 +79,5 @@ export class VisitorComponent implements OnInit {
     this.submitted = false;
     this.visitorForm.reset();
   }
-
-  /*
-  addVisitor() {
-    // TODO add rule
-    this.visitorCollection.add({
-      name: 'test1',
-      mobile: 1233333,
-      premise:'G455',
-      //time: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-    //this.visitorCollection.add(visitor);
-  }*/
 
 }
