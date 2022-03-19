@@ -13,7 +13,7 @@ export class VisitorComponent implements OnInit {
 
   items: Observable<any[]>;
   private visitorCollection: AngularFirestoreCollection<Visitor>;
-  now: Date = new Date();
+ 
 
   visitorForm!: FormGroup;
   submitted = false;
@@ -24,11 +24,9 @@ export class VisitorComponent implements OnInit {
    premise:''
   });*/
 
-  constructor(private fb: FormBuilder,private firestore: AngularFirestore,  private formBuilder: FormBuilder) {
-        this.visitorCollection = firestore.collection<Visitor>('Visitor');
-      
-        this.items = firestore.collection('Visitor').valueChanges();
-
+  constructor(private fb: FormBuilder,private firestore: AngularFirestore,  private formBuilder: FormBuilder) {   
+        this.visitorCollection = firestore.collection<Visitor>('Visitor',ref => ref.orderBy('timeIn'));
+        this.items = this.visitorCollection.valueChanges();       
         }
 
   ngOnInit(): void {
@@ -36,7 +34,6 @@ export class VisitorComponent implements OnInit {
       name: ['', Validators.required],
       mobile: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       premise: ['', [Validators.required]],     
-      timeIn:   this.now.getTime()
     }
     );
   } 
@@ -66,10 +63,13 @@ export class VisitorComponent implements OnInit {
     if (this.visitorForm.invalid) {
       return;
     } else {
+    const newVisitor = this.visitorForm.value;
+    newVisitor.timeIn=new Date().valueOf();
     console.log("Inside OnSubmit");
-    this.visitorCollection.add(this.visitorForm.value);
-    console.warn('Your order has been submitted', this.visitorForm.value);
+    this.visitorCollection.add(newVisitor);
+    console.warn('Your visitor has been submitted', this.visitorForm.value);
     this.visitorForm.reset();
+    this.submitted = false;
     }
   }
 
