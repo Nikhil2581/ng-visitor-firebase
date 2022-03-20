@@ -66,10 +66,12 @@ export class VisitorComponent implements OnInit {
     console.warn('Your visitor has been submitted', this.visitorForm.value);
     this.visitorForm.reset();
     this.submitted = false;
+  //  this.reload();
     }
   }
 
-  
+  reload () { location.reload() }
+
   get visitorFormControl() {
     return this.visitorForm.controls;
   }

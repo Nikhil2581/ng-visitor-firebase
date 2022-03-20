@@ -16,7 +16,7 @@ export class SearchTableComponent implements OnInit {
   message = '';
   currentIndex = -1;
   dtOptions: any = {};
-  dataTableInit=false;
+  dataTableLoaded=false;
   dataTable:any;
   constructor(private visitorService: VisitorService) {
     
@@ -41,6 +41,7 @@ export class SearchTableComponent implements OnInit {
       )
     ).subscribe(data => {           
       this.items = data;  
+      if(!this.dataTable) {
       setTimeout(()=>{          
         this.dataTable =  $('#datatableexample').DataTable( {
           pagingType: 'full_numbers',
@@ -49,6 +50,7 @@ export class SearchTableComponent implements OnInit {
           lengthMenu : [10, 20, 30],                  
       } );
       }, 1); 
+      }
       }, error => console.error(error));
   }
 
