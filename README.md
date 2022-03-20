@@ -43,6 +43,16 @@ Run : ng serve (for local) or ng deploy or firebase deploy (for hosting)
 Try Demo : https://arshopify-982f9.web.app/
 
 
+## For Data Table and Search:
+yarn add or 
+
+npm install jquery --save
+npm install datatables.net --save
+npm install datatables.net-dt --save
+npm install angular-datatables --save
+npm install @types/jquery --save-dev
+npm install @types/datatables.net --save-dev
+
 
 
 

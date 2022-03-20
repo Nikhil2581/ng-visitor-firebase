@@ -13,17 +13,24 @@ import { VisitorService } from '../services/visitor.service';
 })
 export class SearchTableComponent implements OnInit {
   items: any;
-  //private visitorCollection: AngularFirestoreCollection<Visitor>;
   message = '';
   currentIndex = -1;
-
+  dtOptions: any = {};
+  dataTableInit=false;
+  dataTable:any;
   constructor(private visitorService: VisitorService) {
-  
-    }
+    
+  }
   
   ngOnInit() {
     this.retrieveVisitors();
   }
+
+  ngAfterViewInit() {
+    console.log('item'+this.items);
+    
+  }
+
 
   retrieveVisitors(): void  {
   this.visitorService.getAll().snapshotChanges().pipe(
@@ -32,11 +39,20 @@ export class SearchTableComponent implements OnInit {
           ({ id: c.payload.doc.id, ...c.payload.doc.data() })
         )
       )
-    ).subscribe(data => {
-      this.items = data;
-    }); 
+    ).subscribe(data => {           
+      this.items = data;  
+      setTimeout(()=>{          
+        this.dataTable =  $('#datatableexample').DataTable( {
+          pagingType: 'full_numbers',
+          pageLength: 10,
+          processing: true,
+          lengthMenu : [10, 20, 30],                  
+      } );
+      }, 1); 
+      }, error => console.error(error));
   }
 
+  
   /**
    * Transform Firebase TimeStamp to 
    * Java Util Data
@@ -54,21 +70,24 @@ export class SearchTableComponent implements OnInit {
     console.log(item);
      this.visitorService.update(item,visitor).then(() => this.message = 'The visitor is out successfully!')
      .catch(err => console.log(err));;
+    // this.refreshList();
   }
 
   onDelete(item:string){
     console.log(item);
     this.visitorService.delete(item).then(() => {  
       this.message = 'The visitor is deleted successfully!';
-      this.refreshList();
+    //  this.refreshList();
     }).catch(err => console.log(err));
     
   }
 
   refreshList(): void {
-    this.items = null;
-    this.currentIndex = -1;
-    this.retrieveVisitors();
+   // this.items = null;
+   // this.currentIndex = -1;
+   //$('#datatableexample').DataTable().clear();
+    //$('#datatableexample').DataTable().reload(this.visitorService.getAll(), true);
+    //this.retrieveVisitors();
   }
 
   exportExcel() {
@@ -76,6 +95,4 @@ export class SearchTableComponent implements OnInit {
     alert('todo');
     });
   }
-  
-
 }

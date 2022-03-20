@@ -21,6 +21,7 @@ import { AccountModule } from './account/account.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './layput/home/home.component';
 import { VisitorComponent } from './visitor/visitor.component';
+import {DataTablesModule} from 'angular-datatables';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { VisitorComponent } from './visitor/visitor.component';
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
     AccountModule,
-    HttpClientModule
+    HttpClientModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
