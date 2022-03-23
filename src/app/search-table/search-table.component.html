@@ -1,9 +1,9 @@
+<div class="container">
 
-<div class="p-d-flex">           
-  <button type="button" (click)="exportExcel()" class="button-success mr-2 text-end">Export</button>
-</div>
 <h2 class="text-center text-uppercase">Today's Visitor  </h2>
-
+<div  *ngIf="!hideAddVisitor"  class="p-d-flex">           
+    <button type="button" routerLink="/add" class="btn btn-primary text-right">Add Visitor</button>
+  </div>
 <div class="table-responsive">
   <table class="table table-responsive table-borderless" id="datatableexample">
       <thead>
@@ -42,4 +42,6 @@
           </tr>
       </tbody>
   </table>
+</div>
+
 </div>

@@ -1,10 +1,9 @@
-<div class="login-container">
+<div class="container">
     <div class="row">   
-        
-    <div class="col-md-4 mx-auto">
+    <div class="col-md-6 mx-auto">
         <div class="card">
             <div class="card-header align-center">
-                <h3>Visitor Register</h3>
+                <h3>Add Visitor</h3>
             </div>
             <div class="card-body">   
      <form [formGroup]="visitorForm" (ngSubmit)="onSubmit()">
@@ -38,15 +37,17 @@
          </span>
        </div>
        <div  class="flexbuttons">
-        <button  type="submit" class="btn btn-primary">Register</button>       
+        <button  type="submit" class="btn btn-primary">Add</button>       
         <button  type="button" (click)="onReset()" class="btn btn-primary">Reset</button>
        </div>     
      </form>
     </div>
    </div>
    </div>
-        <app-search-table></app-search-table>
     </div>
+      <app-search-table 
+      [hideAddVisitor]="hideAddVisitor">
+      </app-search-table>
 </div>
 
   

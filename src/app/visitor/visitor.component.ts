@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestoreCollection, AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Visitor } from '../model/Visitor';
 import { VisitorService } from '../services/visitor.service';
@@ -16,11 +17,14 @@ export class VisitorComponent implements OnInit {
   private visitorCollection: AngularFirestoreCollection<Visitor>;
   visitorForm!: FormGroup;
   submitted = false;
+  routr: any;
+  hideAddVisitor=true;
 
-  constructor(private fb: FormBuilder,private visitorService: VisitorService,  private formBuilder: FormBuilder) {   
+  constructor(private fb: FormBuilder,private visitorService: VisitorService,  private formBuilder: FormBuilder, private  router:  Router) {   
         //this.visitorCollection = firestore.collection<Visitor>('Visitor',ref => ref.orderBy('timeIn'));
         this.visitorCollection=visitorService.getAll();
         this.items = this.visitorCollection.valueChanges();  
+        this.routr=router;
      }
 
   ngOnInit(): void {
@@ -66,11 +70,11 @@ export class VisitorComponent implements OnInit {
     console.warn('Your visitor has been submitted', this.visitorForm.value);
     this.visitorForm.reset();
     this.submitted = false;
-  //  this.reload();
+    this.reload();
     }
   }
 
-  reload () { location.reload() }
+  reload () { this.routr.navigate(['visitor']); }
 
   get visitorFormControl() {
     return this.visitorForm.controls;

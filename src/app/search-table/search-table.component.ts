@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -17,6 +17,8 @@ export class SearchTableComponent implements OnInit {
   currentIndex = -1;
   dtOptions: any = {};
   dataTableLoaded=false;
+  @Input() hideAddVisitor: any;
+  
   dataTable:any;
   constructor(private visitorService: VisitorService) {
     
