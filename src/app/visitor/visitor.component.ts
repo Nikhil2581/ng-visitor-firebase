@@ -19,6 +19,7 @@ export class VisitorComponent implements OnInit {
   submitted = false;
   routr: any;
   hideAddVisitor=true;
+  visitorName:any
 
   constructor(private fb: FormBuilder,private visitorService: VisitorService,  private formBuilder: FormBuilder, private  router:  Router) {   
         //this.visitorCollection = firestore.collection<Visitor>('Visitor',ref => ref.orderBy('timeIn'));
@@ -70,11 +71,13 @@ export class VisitorComponent implements OnInit {
     console.warn('Your visitor has been submitted', this.visitorForm.value);
     this.visitorForm.reset();
     this.submitted = false;
-    this.reload();
+    //this.visitorName=newVisitor.name;
+    console.log(this.visitorName)
+    this.reload(newVisitor.name);
     }
   }
 
-  reload () { this.routr.navigate(['visitor']); }
+  reload (newVsitor:any) { this.routr.navigate(['visitors',  JSON.stringify(newVsitor)]); }
 
   get visitorFormControl() {
     return this.visitorForm.controls;

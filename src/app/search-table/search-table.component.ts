@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Visitor } from '../model/Visitor';
@@ -18,10 +19,11 @@ export class SearchTableComponent implements OnInit {
   dtOptions: any = {};
   dataTableLoaded=false;
   @Input() hideAddVisitor: any;
+  visitorName:any;
   
   dataTable:any;
-  constructor(private visitorService: VisitorService) {
-    
+  constructor(private visitorService: VisitorService, private route: ActivatedRoute) {
+    this.route.params.subscribe((params: Params) => this.visitorName = params['caller']);
   }
   
   ngOnInit() {

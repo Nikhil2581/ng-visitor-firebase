@@ -1,6 +1,9 @@
 <div class="container">
-
 <h2 class="text-center text-uppercase">Today's Visitor  </h2>
+<div *ngIf="visitorName" class="alert alert-success alert-dismissible fade show" role="alert">
+    New Visitor <strong>{{visitorName}}</strong> is successfully Added.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
 <div  *ngIf="!hideAddVisitor"  class="p-d-flex">           
     <button type="button" routerLink="/add" class="btn btn-primary text-right">Add Visitor</button>
   </div>
