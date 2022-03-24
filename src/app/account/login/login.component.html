@@ -7,14 +7,20 @@
                     <h3>Sign In</h3>
                 </div>
                     <div class="card-body">     
-<form>
+<form (ngSubmit)="loginEmail()">
     <div class="form-group">
         <label class="form-label" for="inputEmail">Email</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+        <input class="form-control"  type="email"
+        name="email"
+        placeholder="Enter email address"
+        [(ngModel)]="email">
     </div>
     <div class="form-group mb-3">
         <label class="form-label" for="inputPassword">Password</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <input class="form-control"  type="password"
+        name="password"
+        placeholder="Enter your password"
+        [(ngModel)]="password"> 
     </div>
     <div class="form-group mb-3">
         <div class="form-check">
@@ -30,14 +36,14 @@
     </div>
 </form>
 
-                    </div>  
+ </div>  
                     <div class="forgot-password">
                         <a href="">Forgot password?</a>
                     </div>
                     <div class="forgot-password">
                        If new user, kindly sign up  <a href="/register">Sign Up</a>
                     </div>
-                </div>
+ </div>
 </div>
 </div>
 </div>

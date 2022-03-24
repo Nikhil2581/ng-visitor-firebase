@@ -1,6 +1,9 @@
+import { NgLocalization } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup , FormBuilder, FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomvalidationService } from 'src/app/services/customvalidation.service';
+import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 
 @Component({
   selector: 'app-register',
@@ -10,12 +13,15 @@ import { CustomvalidationService } from 'src/app/services/customvalidation.servi
 export class RegisterComponent implements OnInit {
  
   registerForm!: FormGroup;
-
+  email='';
+  password='';
  
 
   submitted = false;
 
-  constructor(private fb: FormBuilder,  private customValidator: CustomvalidationService) { 
+  constructor(private fb: FormBuilder,  private customValidator: CustomvalidationService,
+    private _fbauthService: FirebaseauthService, private _router: Router,
+    private route: ActivatedRoute ) { 
     
   }
 
@@ -53,6 +59,11 @@ export class RegisterComponent implements OnInit {
       console.table(this.registerForm.value); // OR
       console.log(JSON.stringify(this.registerForm.value, null, 2));
     }
+  }
+
+  signUp() {
+    return this._fbauthService.signUp(this.registerForm.value.email, this.registerForm.value.password);
+    location.reload();
   }
 
 /**

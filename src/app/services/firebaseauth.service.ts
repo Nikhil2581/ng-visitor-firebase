@@ -35,7 +35,9 @@ export class FirebaseauthService {
   }
 
   signUp(email: string, password: string) {
-    return this.afAuth.createUserWithEmailAndPassword(email, password);
+    return this.afAuth.createUserWithEmailAndPassword(email, password).then(() => {
+      this._router.navigate(['/']);
+    });;
   }
 
   get isLoggedIn(): boolean {

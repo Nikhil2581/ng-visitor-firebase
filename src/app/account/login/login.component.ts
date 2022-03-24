@@ -28,12 +28,13 @@ export class LoginComponent implements OnInit {
          .subscribe(params => this.return = params['return'] || '/home');
   }
   
-
-  onSubmit(): void {
+// this is for non firebase login
+onSubmit(): void {
     this.loading = true;
     this.error = '';
     if (!this.email || !this.password) {
       this.error = 'Make sure to fill everything ;)';
+      console.log('error');
     } else {
       this._authService
         .login({ email: this.email, password: this.password }) // passing email and password
@@ -52,18 +53,16 @@ export class LoginComponent implements OnInit {
     }
   }
 
-
+// firebase login with google
  loginGoogle() {
     this._fbauthService.googleAuth();
  }
 
+ //firebase login
  loginEmail() {
-    this._router.navigate(['/home'], {
-       queryParams: {
-          return: this.return
-       }
-    });
+  this._fbauthService.login(this.email, this.password);
  }
+ 
  
   canSubmit(): boolean {
     return this.email.length > 0 && this.password.length > 0;

@@ -6,7 +6,7 @@
                 <h3>Sign Up (Registration)</h3>
             </div>
             <div class="card-body">          
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <form [formGroup]="registerForm" (ngSubmit)="signUp()">
                     <div class="form-group">
                         <label class="form-label" for="inputName">Name</label>
                         <input placeholder="Name" type="text" class="form-control" formControlName="name">
@@ -17,7 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label" for="inputEmail">Email</label>
-                        <input placeholder="Email" type="text" class="form-control" formControlName="email">
+                        <input placeholder="Email" type="text" class="form-control"  formControlName="email">
                         <span class="text-danger"
                             *ngIf="(registerFormControl.email.touched || submitted) && registerFormControl.email.errors?.required">
                             Email is required
@@ -26,19 +26,7 @@
                             *ngIf="registerFormControl.email.touched && registerFormControl.email.errors?.email">
                             Enter a valid email address
                         </span>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label" for="inputUserName">User Name</label>
-                        <input placeholder="User Name" type="text" class="form-control" formControlName="username">
-                        <span class="text-danger"
-                            *ngIf="(registerFormControl.username.touched || submitted) && registerFormControl.username.errors?.required">
-                            User Name is required
-                        </span>
-                        <span class="text-danger"
-                            *ngIf="registerFormControl.username.touched && registerFormControl.username.errors?.userNameNotAvailable">
-                            User Name is not available
-                        </span>
-                    </div>
+                    </div>                 
                     <div class="form-group">
                         <label class="form-label" for="inputPassword">Password</label>
                         <input placeholder="Password" type="password" class="form-control" formControlName="password">
@@ -54,7 +42,8 @@
                     </div>
                     <div class="form-group mb-3">
                         <label class="form-label" for="inputConfirmPassword">Confirm Password</label>
-                        <input placeholder="ReType Password" type="password" class="form-control" formControlName="confirmPassword">
+                        <input placeholder="ReType Password" type="password" class="form-control" 
+                        formControlName="confirmPassword">
                         <span class="text-danger"
                             *ngIf="(registerFormControl.confirmPassword.touched || submitted)&& registerFormControl.confirmPassword.errors?.required">
                             Confirm Password is required
