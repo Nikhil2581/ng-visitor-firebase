@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +9,19 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
+  return = '';
 
   email = '';
   password = '';
   error = '';
   loading = false;
   
-  constructor(private _authService: AuthService, private _router: Router) { }
+  constructor(private _fbauthService: FirebaseauthService, private _router: Router,
+    private _authService: AuthService, private route: ActivatedRoute ) { }
 
   ngOnInit(): void {
+    this.route.queryParams
+         .subscribe(params => this.return = params['return'] || '/home');
   }
   
 
@@ -33,7 +37,7 @@ export class LoginComponent implements OnInit {
           (res) => {
             console.log(res);
             this.loading = false;
-            this._router.navigate(['/']);
+            this._router.navigate(['/home']);
           },
           (err) => {
             console.log(err);
@@ -44,6 +48,19 @@ export class LoginComponent implements OnInit {
     }
   }
 
+
+ loginGoogle() {
+    this._fbauthService.googleAuth();
+ }
+
+ loginEmail() {
+    this._router.navigate(['/home'], {
+       queryParams: {
+          return: this.return
+       }
+    });
+ }
+ 
   canSubmit(): boolean {
     return this.email.length > 0 && this.password.length > 0;
   }

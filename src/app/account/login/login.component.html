@@ -1,4 +1,5 @@
 <div class="login-container">
+    <span class="error" *ngIf="error">{{ error }}</span>
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card">
@@ -21,15 +22,21 @@
             <label class="form-check-label" for="checkRemember">Remember me</label>
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Sign in</button>
-    <div class="forgot-password">
-        <a href="">Forgot password?</a>
-    </div>
-    <div class="forgot-password">
-       If new user, kindly sign up  <a href="/register">Sign Up</a>
+    <div class="text-center">
+    <button type="submit" class="btn btn-block btn-dark btn-outline">Sign in</button>
+    OR 
+    <button type="button" (click)="loginGoogle()" class="btn btn-block btn-dark btn-outline" >
+     <img src="https://img.icons8.com/color/16/000000/google-logo.png">  Sign in Using Google</button>
     </div>
 </form>
+
                     </div>  
+                    <div class="forgot-password">
+                        <a href="">Forgot password?</a>
+                    </div>
+                    <div class="forgot-password">
+                       If new user, kindly sign up  <a href="/register">Sign Up</a>
+                    </div>
                 </div>
 </div>
 </div>

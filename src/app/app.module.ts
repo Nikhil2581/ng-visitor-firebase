@@ -22,7 +22,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './layput/home/home.component';
 import { VisitorComponent } from './visitor/visitor.component';
 import {DataTablesModule} from 'angular-datatables';
-
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import 'firebase/auth'
 
 @NgModule({
   declarations: [
@@ -44,12 +45,13 @@ import {DataTablesModule} from 'angular-datatables';
     provideFirestore(() => getFirestore()),
     provideMessaging(() => getMessaging()),
     provideStorage(() => getStorage())*/
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase, "angular-auth-firebase"),
     AngularFireAnalyticsModule,
     AngularFirestoreModule,
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AccountModule,
     HttpClientModule,
-    DataTablesModule
+    DataTablesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

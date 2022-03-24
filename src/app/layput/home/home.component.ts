@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  user:any;
 
   constructor() { }
 
   ngOnInit(): void {
+     this.user=localStorage.getItem('user');
+  }
+
+  getName() {
+    if (this.user) {
+      return this.user.displayName;
+    }
   }
 
 }

@@ -11,9 +11,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent }, 
   { path: 'visitors/:caller', component: SearchTableComponent, canActivate:[IsAuthenticatedGuard] }, 
   { path: 'visitors', component: SearchTableComponent, canActivate:[IsAuthenticatedGuard] }, 
- { path: 'register', component: RegisterComponent, canActivate:[IsAuthenticatedGuard] },
+ { path: 'register', component: RegisterComponent},
  { path: 'add', component: VisitorComponent, canActivate:[IsAuthenticatedGuard] },
- { path: '', component: BaseLayoutComponent, canActivate:[IsAuthenticatedGuard]}];
+ { path: 'home', component: BaseLayoutComponent, canActivate:[IsAuthenticatedGuard]}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

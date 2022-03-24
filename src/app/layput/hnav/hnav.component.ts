@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 
 
 @Component({
@@ -9,13 +11,21 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HnavComponent implements OnInit {
 
-  constructor(private _auth: AuthService) { }
+  isLoggedIn=false;
+
+  constructor(private _auth: AuthService, private _authfb: FirebaseauthService,
+    private _router:Router) { 
+      console.log('login'+this.isLoggedIn)
+    }
 
   ngOnInit(): void {
+    this.isLoggedIn=this._authfb.isLoggedIn;
   }
 
+
   logout() {
-    this._auth.logout();
+    this._authfb.SignOut();
+    this.isLoggedIn=false;
   }
 
 }
