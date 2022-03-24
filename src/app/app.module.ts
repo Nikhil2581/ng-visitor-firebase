@@ -23,7 +23,8 @@ import { HomeComponent } from './layput/home/home.component';
 import { VisitorComponent } from './visitor/visitor.component';
 import {DataTablesModule} from 'angular-datatables';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import 'firebase/auth'
+import 'firebase/auth';
+import { ContactusComponent } from './contactus/contactus.component'
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import 'firebase/auth'
     HeaderComponent,
      HnavComponent,
     HomeComponent,
-    VisitorComponent
+    VisitorComponent,
+    ContactusComponent
   ],
   imports: [
     BrowserModule,

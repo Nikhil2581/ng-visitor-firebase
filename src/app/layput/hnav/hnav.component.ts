@@ -15,11 +15,13 @@ export class HnavComponent implements OnInit {
 
   constructor(private _auth: AuthService, private _authfb: FirebaseauthService,
     private _router:Router) { 
+      this.isLoggedIn=this._authfb.isLoggedIn;
       console.log('login'+this.isLoggedIn)
     }
 
   ngOnInit(): void {
     this.isLoggedIn=this._authfb.isLoggedIn;
+    console.log('login'+this.isLoggedIn)
   }
 
 

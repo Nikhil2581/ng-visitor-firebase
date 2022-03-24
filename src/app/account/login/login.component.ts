@@ -17,7 +17,11 @@ export class LoginComponent implements OnInit {
   loading = false;
   
   constructor(private _fbauthService: FirebaseauthService, private _router: Router,
-    private _authService: AuthService, private route: ActivatedRoute ) { }
+    private _authService: AuthService, private route: ActivatedRoute ) { 
+      if(_fbauthService.isLoggedIn) {
+        this._router.navigate(['home']);
+      }
+    }
 
   ngOnInit(): void {
     this.route.queryParams
