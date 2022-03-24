@@ -45,7 +45,6 @@ Try Demo : https://arshopify-982f9.web.app/
 
 ## For Data Table and Search:
 yarn add or 
-
 npm install jquery --save
 npm install datatables.net --save
 npm install datatables.net-dt --save
@@ -55,4 +54,15 @@ npm install @types/datatables.net --save-dev
 
 
 
+## Data base rule setup as below in FireBase console: 
 
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+
+## For Google Authentication, Enable Google Authentication on Firebase console.
