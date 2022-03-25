@@ -42,11 +42,6 @@ import { ContactusComponent } from './contactus/contactus.component'
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-   /* provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore()),
-    provideMessaging(() => getMessaging()),
-    provideStorage(() => getStorage())*/
     AngularFireModule.initializeApp(environment.firebase, "angular-auth-firebase"),
     AngularFireAnalyticsModule,
     AngularFirestoreModule,

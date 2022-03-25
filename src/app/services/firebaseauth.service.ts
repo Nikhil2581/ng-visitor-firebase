@@ -3,7 +3,6 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
-import { NgLocalization } from '@angular/common';
 
 
 @Injectable({
@@ -37,7 +36,9 @@ export class FirebaseauthService {
   signUp(email: string, password: string) {
     return this.afAuth.createUserWithEmailAndPassword(email, password).then(() => {
       this._router.navigate(['/']);
-    });;
+    }).catch((error) => {
+      window.alert(error);
+    });
   }
 
   get isLoggedIn(): boolean {
@@ -45,21 +46,12 @@ export class FirebaseauthService {
     return (!this.isEmptyObject(user)) ? true : false;
   }
 
-  isEmptyObject(obj: {}) {
-    return (obj && (Object.keys(obj).length === 0));
-  }
-
   googleAuth() {
     return this.authLogin(new GoogleAuthProvider());
   }
 
   authLogin(provider: firebase.default.auth.AuthProvider) {
-    return this.afAuth.signInWithPopup(provider)
-    .then((result) => {
-       this._router.navigate(['visitors']); ;
-    }).catch((error) => {
-      window.alert(error);
-    });
+    return this.afAuth.signInWithPopup(provider);
   }
 
   SignOut() {
@@ -67,5 +59,9 @@ export class FirebaseauthService {
       localStorage.removeItem('user');
       this._router.navigate(['login']);
     });
+  }
+
+  private isEmptyObject(obj: {}) {
+    return (obj && (Object.keys(obj).length === 0));
   }
 }

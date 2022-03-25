@@ -23,7 +23,7 @@ export class SearchTableComponent implements OnInit {
   
   dataTable:any;
   constructor(private visitorService: VisitorService, private route: ActivatedRoute) {
-    this.route.params.subscribe((params: Params) => this.visitorName = params['caller']);
+    //this.route.params.subscribe((params: Params) => this.visitorName = params['caller']);
   }
   
   ngOnInit() {
@@ -74,7 +74,11 @@ export class SearchTableComponent implements OnInit {
       timeOut: new Date().getTime()
     };
     console.log(item);
-     this.visitorService.update(item,visitor).then(() => this.message = 'The visitor is out successfully!')
+     this.visitorService.update(item,visitor).then(() =>
+     {
+     this.message = 'The visitor is out successfully!';
+     location.reload();
+    })
      .catch(err => console.log(err));;
     // this.refreshList();
   }
@@ -82,8 +86,9 @@ export class SearchTableComponent implements OnInit {
   onDelete(item:string){
     console.log(item);
     this.visitorService.delete(item).then(() => {  
-      this.message = 'The visitor is deleted successfully!';
+    this.message = 'The visitor is deleted successfully!';
     //  this.refreshList();
+    location.reload();
     }).catch(err => console.log(err));
     
   }

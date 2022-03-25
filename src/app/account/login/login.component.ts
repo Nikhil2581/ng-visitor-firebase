@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private _fbauthService: FirebaseauthService, private _router: Router,
     private _authService: AuthService, private route: ActivatedRoute ) { 
       if(_fbauthService.isLoggedIn) {
-        this._router.navigate(['home']);
+        this._router.navigateByUrl('/'); 
       }
     }
 
@@ -27,47 +27,30 @@ export class LoginComponent implements OnInit {
     this.route.queryParams
          .subscribe(params => this.return = params['return'] || '/home');
   }
-  
-// this is for non firebase login
-onSubmit(): void {
-    this.loading = true;
-    this.error = '';
-    if (!this.email || !this.password) {
-      this.error = 'Make sure to fill everything ;)';
-      console.log('error');
-    } else {
-      this._authService
-        .login({ email: this.email, password: this.password }) // passing email and password
-        .subscribe(
-          (res) => {
-            console.log(res);
-            this.loading = false;
-            this._router.navigate(['/home']);
-          },
-          (err) => {
-            console.log(err);
-            this.error = err.error.message;
-            this.loading = false;
-          }
-        );
-    }
-  }
 
 // firebase login with google
  loginGoogle() {
-    this._fbauthService.googleAuth();
+    this._fbauthService.googleAuth()
+    .then((result) => {
+     location.reload(); // Reload to reroute after successfull login
+    }).catch((error) => {
+      window.alert(error);
+    });;
  }
 
- //firebase login
+ //firebase email login
  loginEmail() {
-  this._fbauthService.login(this.email, this.password);
+  this._fbauthService.login(this.email, this.password).then((result) => {
+    location.reload(); // Reload to reroute after successfull login
+   }).catch((error) => {
+     window.alert(error);
+   });;;
  }
  
- 
-  canSubmit(): boolean {
+canSubmit(): boolean {
     return this.email.length > 0 && this.password.length > 0;
-  }
-  }
+}
+}
 
 
 

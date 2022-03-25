@@ -5,7 +5,7 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 <div  *ngIf="!hideAddVisitor"  class="p-d-flex">           
-    <button type="button" routerLink="/add" class="btn btn-primary text-right">Add Visitor</button>
+    <button type="button" routerLink="/add" class="btn-block btn-dark btn-outline text-right">Add Visitor</button>
   </div>
 <div class="table-responsive">
   <table class="table table-responsive table-borderless" id="datatableexample">
@@ -20,17 +20,17 @@
           </tr>
       </thead>
       <tbody > <!--how to do indexing ;) or may use index as indexOfelement; --> 
-          <tr *ngFor="let item of items;let indexOfelement=index" class="text-center">               
-              <td>{{indexOfelement+1}}</td>
-              <td>{{item.name}}</td>
-              <td><i class="fa fa-check-circle-o green"></i><span class="ms-1">{{item.mobile}}</span></td>
-              <td ><span class="fw-bolder">{{item.premise}}</span> <i class="fa fa-ellipsis-h ms-2"></i></td>
-              <td >
+          <tr  *ngFor="let item of items;let indexOfelement=index" class="text-center">               
+              <td [ngClass]="{'colortd':!item.timeOut}">{{indexOfelement+1}}</td>
+              <td [ngClass]="{'colortd':!item.timeOut}"><strong>{{item.name}}</strong></td>
+              <td [ngClass]="{'colortd':!item.timeOut}"><i class="fa fa-check-circle-o green"></i><span class="ms-1">{{item.mobile}}</span></td>
+              <td [ngClass]="{'colortd':!item.timeOut}"><span class="fw-bolder">{{item.premise}}</span> <i class="fa fa-ellipsis-h ms-2"></i></td>
+              <td [ngClass]="{'colortd':!item.timeOut}">
                   <span class="fw-bolder">{{toDate(item.timeIn) | date: 'dd-MMM-yyyy hh:mm:ss'}}</span> 
                   <i class="fa fa-ellipsis-h ms-2"></i>
                   <button *ngIf="!item.timeOut" (click)="onDelete(item.id)" class="btn btn-link"> Delete </button>
                 </td>                    
-              <td >
+              <td [ngClass]="{'colortd':!item.timeOut}">
                 <ng-container
                      *ngIf="item.timeOut; then showOutTime; else showOut">
                 </ng-container>             

@@ -17,7 +17,8 @@ const routes: Routes = [
  { path: 'register', component: RegisterComponent},
  { path: 'add', component: VisitorComponent, canActivate:[IsAuthenticatedGuard] },
  { path: 'contactus', component: ContactusComponent },
- { path: 'home', component: HomeComponent }
+ { path: '', component: SearchTableComponent,canActivate:[IsAuthenticatedGuard]  },
+ { path: 'home', component: SearchTableComponent,canActivate:[IsAuthenticatedGuard]  }
 ]
 
 @NgModule({
