@@ -62,7 +62,8 @@ export class RegisterComponent implements OnInit {
   }
 
   signUp() {
-    return this._fbauthService.signUp(this.registerForm.value.email, this.registerForm.value.password);
+    return this._fbauthService.signUp(
+      this.registerForm.value.email, this.registerForm.value.password, 'admin');
     location.reload();
   }
 

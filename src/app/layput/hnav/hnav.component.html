@@ -14,8 +14,10 @@
             </div>
                 <div *ngIf="isLoggedIn" class="navbar-nav ms-auto">               
                 <a class="nav-item nav-link" routerLink="/visitors" routerLinkActive="active">Visitors</a>   
-                 <a class="nav-item nav-link" (click)="logout()">Logout</a>     	                              
-                </div>
+                <a *ngIf="isAdmin" class="nav-item nav-link" routerLink="/register" routerLinkActive="active">Register</a>  
+                 <a class="nav-item nav-link" (click)="logout()">Logout</a>     	
+                                              
+                </div>        
         </div>
     </div>
 </nav>

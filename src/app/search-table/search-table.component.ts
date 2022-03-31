@@ -4,6 +4,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Visitor } from '../model/Visitor';
+import { FirebaseauthService } from '../services/firebaseauth.service';
 import { VisitorService } from '../services/visitor.service';
 
 
@@ -20,10 +21,14 @@ export class SearchTableComponent implements OnInit {
   dataTableLoaded=false;
   @Input() hideAddVisitor: any;
   visitorName:any;
+  userName:any;
   
   dataTable:any;
-  constructor(private visitorService: VisitorService, private route: ActivatedRoute) {
+  constructor(private visitorService: VisitorService, private route: ActivatedRoute, authService:FirebaseauthService) {
     //this.route.params.subscribe((params: Params) => this.visitorName = params['caller']);
+    if(authService.isLoggedIn) {
+      this.userName=authService.User.displayName;
+    }
   }
   
   ngOnInit() {

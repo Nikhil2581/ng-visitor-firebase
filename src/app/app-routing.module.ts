@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent}, 
   { path: 'visitors/:caller', component: SearchTableComponent, canActivate:[IsAuthenticatedGuard] }, 
   { path: 'visitors', component: SearchTableComponent, canActivate:[IsAuthenticatedGuard] }, 
- { path: 'register', component: RegisterComponent},
+ { path: 'register', component: RegisterComponent, canActivate:[IsAuthenticatedGuard] },
  { path: 'add', component: VisitorComponent, canActivate:[IsAuthenticatedGuard] },
  { path: 'contactus', component: ContactusComponent },
  { path: '', component: SearchTableComponent,canActivate:[IsAuthenticatedGuard]  },

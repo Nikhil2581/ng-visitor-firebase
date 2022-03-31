@@ -48,7 +48,7 @@ import { ContactusComponent } from './contactus/contactus.component'
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AccountModule,
     HttpClientModule,
-    DataTablesModule,
+    DataTablesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

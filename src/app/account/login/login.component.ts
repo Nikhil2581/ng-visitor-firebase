@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
+import { defaultAppConfig } from 'src/app/config/visitor-config';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ export class LoginComponent implements OnInit {
   password = '';
   error = '';
   loading = false;
+  isGooleAuthEnabled = false;
   
   constructor(private _fbauthService: FirebaseauthService, private _router: Router,
     private _authService: AuthService, private route: ActivatedRoute ) { 

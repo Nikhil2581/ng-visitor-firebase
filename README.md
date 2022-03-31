@@ -66,3 +66,11 @@ service cloud.firestore {
 }
 
 ## For Google Authentication, Enable Google Authentication on Firebase console.
+
+
+
+https://fireship.io/lessons/role-based-authorization-with-firestore-nosql-and-angular-5/#Rules-for-the-User-Document
+
+
+Admin User - He can add more normal users
+admin@visitor.com/Admin@123
