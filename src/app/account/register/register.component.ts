@@ -2,6 +2,7 @@ import { NgLocalization } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup , FormBuilder, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { defaultAppConfig } from 'src/app/config/visitor-config';
 import { CustomvalidationService } from 'src/app/services/customvalidation.service';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 
@@ -22,6 +23,10 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder,  private customValidator: CustomvalidationService,
     private _fbauthService: FirebaseauthService, private _router: Router,
     private route: ActivatedRoute ) { 
+      // Allow regsitration by Admin user only 
+      if(_fbauthService.User.email != defaultAppConfig.login?.adminEmail) {
+        this._router.navigateByUrl('/'); 
+      }
     
   }
 

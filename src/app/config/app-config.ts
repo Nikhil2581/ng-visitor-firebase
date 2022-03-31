@@ -7,5 +7,6 @@ import { Injectable } from "@angular/core";
 export abstract class AppStorefrontConfig {
   login?: {
     isGoogleAuthEnabled?: boolean;
+    adminEmail:string;
   };
 }

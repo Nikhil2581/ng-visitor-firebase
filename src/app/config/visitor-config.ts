@@ -2,6 +2,7 @@ import { AppStorefrontConfig } from "./app-config";
 
 export const defaultAppConfig: AppStorefrontConfig = {
   login: {
-    isGoogleAuthEnabled: false
+    isGoogleAuthEnabled: false,
+    adminEmail:"admin@visitor.com"
   },
 };

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { defaultAppConfig } from 'src/app/config/visitor-config';
 import { AuthService } from 'src/app/services/auth.service';
 import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 
@@ -11,14 +12,13 @@ import { FirebaseauthService } from 'src/app/services/firebaseauth.service';
 })
 export class HnavComponent implements OnInit {
 
-  isLoggedIn=false;
-  adminEmail="admin@visitor.com";
+  isLoggedIn=false;  
   isAdmin=false;
 
   constructor(private _auth: AuthService, private _authfb: FirebaseauthService,
     private _router:Router) { 
       this.isLoggedIn=this._authfb.isLoggedIn;
-      if(_authfb.User.email == this.adminEmail) {
+      if(_authfb.User.email == defaultAppConfig.login?.adminEmail) {
         this.isAdmin=true;
       }
       console.log('login'+this.isLoggedIn)
